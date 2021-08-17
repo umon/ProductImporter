@@ -1,0 +1,31 @@
+﻿@model ProductListViewModel
+@{
+}
+<table class="table table-dark table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Barkod</th>
+            <th>Ürün Adı</th>
+            <th>Ürün Açıklaması</th>
+            <th>Fiyat</th>
+            <th>Kategori</th>
+            <th>Stok Adedi</th>
+            <th>Durum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Products != null && Model.Products.Any())
+            foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.Barcode</td>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                    <td>@product.Price TL</td>
+                    <td>@product.CategoryName</td>
+                    <td>@product.StockQuantity adet</td>
+                    <td><span class="badge badge-@(product.Status == Domain.Enums.EntityStatusType.Active ? "success" : "danger")">@(product.Status == Domain.Enums.EntityStatusType.Active ? "Aktif" : "Pasif")</span></td>
+                </tr>
+            }
+    </tbody>
+</table>
